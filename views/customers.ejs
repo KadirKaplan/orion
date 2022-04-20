@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Orion - Müşteriler</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600&display=swap" rel="stylesheet">
+
+    
+  
+    <!-- Bootstrap CSS -->
+ 
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="libs/FileSaver/FileSaver.min.js"></script>
+    <script type="text/javascript" src="libs/js-xlsx/xlsx.core.min.js"></script>
+    <script type="text/javascript" src="../libs/jsPDF/polyfills.umd.js"></script>
+    <script type="text/javascript" src="libs/jsPDF/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="libs/pdfmake/pdfmake.min.js"></script>
+    <script type="text/javascript" src="libs/pdfmake/vfs_fonts.js"></script>
+    <script type="text/javascript" src="libs/html2canvas/html2canvas.min.js"></script>
+    <script type="text/javascript" src="tableExport.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+
+  </head>
+
+  <body>
+    
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt=""> 
+          <span class="d-none d-lg-block">Orion</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+      </div><!-- End Logo -->
+     
+      <div class="search-bar">
+        
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+        
+          <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+      </div><!-- End Search Bar -->
+  
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+  
+          <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle " href="#">
+              <i class="bi bi-search"></i>
+            </a>
+          </li><!-- End Search Icon-->
+          <li class="nav-item dropdown pe-3">
+  
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+            </a><!-- End Profile Iamge Icon -->
+  
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+              <li class="dropdown-header">
+                <h6></h6>
+                <span></span>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+  
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                  <i class="bi bi-person"></i>
+                  <span>Profilim</span>
+                </a>
+              </li>
+            
+              <li>
+                <a href="/users/logout" class="dropdown-item d-flex align-items-center" >
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Çıkış</span>
+                </a>
+              </li>
+  
+            </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
+  
+        </ul>
+      </nav><!-- End Icons Navigation -->
+  
+    </header><!-- End Header -->
+  
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+      <ul class="sidebar-nav" id="sidebar-nav">
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed " href="/index">
+            <i class="bi bi-grid" style="font-size: 20px; "></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/customers" >
+            <i class="bi bi-person" style="font-size: 20px;" ></i>
+            <span>Müşteriler</span>
+          </a>
+        </li>
+  
+         <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-faq.html">
+            <i class="bi bi-server" style="font-size: 20px;" ></i> 
+           
+            <span>Stoklar</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-contact.html">
+            <i class="bi bi-boxes" style="font-size: 20px;"></i>
+            <span>Odalar</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-contact.html">
+            <i class="bi bi-coin" style="font-size: 20px;"></i>
+            <span>Kasalar</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-register.html">
+            <i class="bi bi-bank" style="font-size: 20px;"></i>
+            <span>Bankalar</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-login.html">
+            <i class="bi bi-receipt" style="font-size: 20px;"></i>
+            <span>Fatura</span>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-error-404.html">
+            <i class="bi bi-bar-chart" style="font-size: 20px;"></i>
+            <span>Raporlar</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="pages-error-404.html">
+            <i class="bi bi-telephone" style="font-size: 20px;"></i>
+            <span>İletişim</span>
+          </a>
+        </li>
+  
+        
+  
+      </ul> 
+  
+    </aside>
+
+    
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Müşteriler</h1>
+        <nav>
+          <ol class="breadcrumb">
+           
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+      <section class="section">
+        <% if(flashMessages) { %> 
+
+          <% if(flashMessages.success) { %> 
+            <div class="alert alert-success">
+              <%= flashMessages.success %>
+            </div>
+          <% %> 
+      
+          <% } if(flashMessages.error) { %> 
+            <div class="alert alert-danger">
+              <%= flashMessages.error %>
+            </div>
+          <% }%> 
+          
+          
+        <% }%>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#addCourse"
+          data-placement="top" 
+          title="Yeni Müşteri Oluştur"
+        >
+          <i class="bi bi-person-plus me-1"></i> Yeni Müşteri
+        </button>
+      
+  
+        <div class="row">
+        
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Kod</th>
+                      <th scope="col">Firma Unvanı</th>
+                      <th scope="col">VKN/TCKN</th>
+                      <th scope="col">Yetkili</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Telefon</th>
+                      <th scope="col">Şehir</th>
+                      <th scope="col">İşlemler</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (let i = 0; i < customers.length; i++) { %>
+                    <tr>
+                      <th scope="row"><%= customers[i].companyCode %></th>
+                      <td>
+                        <%= customers[i].companyName.substring(0,20) + '...' %>
+                      </td>
+                      <td><%= customers[i].copanyTaxID %></td>
+                      <td><%= customers[i].authorizedPerson %></td>
+                      <td><%= customers[i].email %></td>
+                      <td><%= customers[i].companyTelephone %></td>
+                      <td><%= customers[i].companyCity %></td>
+                      <td>
+                          <ul class="action-list">
+                          <li>
+                            <a href=""  data-toggle="modal" data-placement="bottom" title="İncele" 
+                            data-target="#examineCustomer<%=customers[i]._id %>" class="btn btn-primary"
+                              ><i class="bi bi-search"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href=""  data-toggle="modal" data-placement="bottom" title="Güncelle"
+                            data-target="#updateCustomer<%=customers[i]._id %>" class="btn btn-primary"
+                              ><i class="bi bi-pencil"></i
+                            ></a>
+                          </li>
+                          <li>
+                            
+                            <a href="" data-toggle="modal" data-target="#deleteCustomer<%=customers[i]._id %>" class="btn btn-danger" data-placement="bottom" title="Sil"><i class="bi bi-trash"></i></a>
+                          </li>
+                        </ul>  
+
+                        <!-- <div class="dropdown">
+                          <button class="btn btn-link btn-sm " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            İşlem
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#"><i class="bi bi-search"></i>İncele</a>
+                            <a class="dropdown-item" href="#"><i class="bi bi-pencil"></i>Güncelle</a>
+                            <a class="dropdown-item" href="#"><i class="bi bi-trash"></i>Sil</a>
+                          </div>
+                        </div> 
+                         -->
+                      </td>
+                    </tr>
+                    <!--Update Modal -->
+                      <div class="modal " id="updateCustomer<%=customers[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel"><strong><%=customers[i].companyName %></strong></h5>
+                              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST" action="/customers//<%= customers[i].slug %>?_method=PUT">
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Firma Kodu</label>
+                                  <input  type="text" class="form-control" name = "companyCode" value="<%=customers[i].companyCode %>"  aria-describedby="emailHelp">
+                                  
+                                </div>
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Firma Adı</label>
+                                  <input type="text" class="form-control" name="companyName" value="<%=customers[i].companyName %>"  aria-describedby="emailHelp">
+                                  
+                                </div>
+                              
+                                <div class="col-md-12">
+                                  <label for="exampleInputPassword1" class="form-label">Yetkili Kişi</label>
+                                  <input type="text" class="form-control" name="authorizedPerson"  value ="<%=customers[i].authorizedPerson %>">
+                                </div>
+                              
+                                <div class="col-md-12">
+                                  <label for="exampleInputPassword1" class="form-label">Adres</label>
+                                  <textarea class="form-control" name="companyAdress"   rows="3"><%=customers[i].companyAdress %></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">VKN/TCKN</label>
+                                  <input type="text" class="form-control" name="copanyTaxID"  value="<%=customers[i].copanyTaxID %>">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">E-posta</label>
+                                  <input type="text" class="form-control" name="email" value="<%=customers[i].email %>">
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">Telefon</label>
+                                  <input type="text" class="form-control" name="companyTelephone" value="<%=customers[i].companyTelephone %>" >
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">Şehir</label>
+                                  <input type="text" class="form-control" name="companyCity" value="<%=customers[i].companyCity %>"> 
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                                  <button type="submit" class="btn btn-primary">Kaydet</button>
+                                </div>
+                                
+                              </form>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                        <!--Examine Modal -->
+                        <div class="modal " id="examineCustomer<%=customers[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> <strong><%=customers[i].companyName %></strong></h5>
+                                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form >
+                                  <div class="col-md-12">
+                                    <label for="exampleInputEmail1" class="form-label">Firma Kodu</label>
+                                    <input  type="text" class="form-control" name = "companyCode" value="<%=customers[i].companyCode %>"  aria-describedby="emailHelp" readonly>
+                                    
+                                  </div>
+                                  <div class="col-md-12">
+                                    <label for="exampleInputEmail1" class="form-label">Firma Adı</label>
+                                    <input type="text" class="form-control" name="companyName" value="<%=customers[i].companyName %>"  aria-describedby="emailHelp" readonly>
+                                    
+                                  </div>
+                                
+                                  <div class="col-md-12">
+                                    <label for="exampleInputPassword1" class="form-label">Yetkili Kişi</label>
+                                    <input type="text" class="form-control" name="authorizedPerson"  value ="<%=customers[i].authorizedPerson %>" readonly>
+                                  </div>
+                                
+                                  <div class="col-md-12">
+                                    <label for="exampleInputPassword1" class="form-label">Adres</label>
+                                    <textarea class="form-control" name="companyAdress" readonly  rows="3"><%=customers[i].companyAdress %></textarea>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">VKN/TCKN</label>
+                                    <input type="text" class="form-control" name="copanyTaxID"  value="<%=customers[i].copanyTaxID %>" readonly>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">E-posta</label>
+                                    <input type="text" class="form-control" name="email" value="<%=customers[i].email %>" readonly>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">Telefon</label>
+                                    <input type="text" class="form-control" name="companyTelephone" value="<%=customers[i].companyTelephone %>" readonly>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">Şehir</label>
+                                    <input type="text" class="form-control" name="companyCity" value="<%=customers[i].companyCity %>" readonly> 
+                                  </div>
+  
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                  </div>
+                                  
+                                </form>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                       <!--Detete item Modal -->
+                      <div class="modal" id="deleteCustomer<%=customers[i]._id %>" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Uyarı</h5>
+                              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p><strong><%=customers[i].companyName %></strong> isimli firmayı silmek istediğinizden emin misiniz? </p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                              <a href ="/customers/<%= customers[i].slug %>?_method=DELETE" type="button" class="btn btn-primary">Onayla</a>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+                <!--Add Modal -->
+                <div class="modal fade" id="addCourse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Müşteri Ekle</strong></h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST" action="/customers">
+                          <div class="col-md-12">
+                            <label for="exampleInputEmail1" class="form-label">Firma Kodu</label>
+                            <input  type="text" class="form-control" name = "companyCode"  aria-describedby="emailHelp">
+                            
+                          </div>
+                          <div class="col-md-12">
+                            <label for="exampleInputEmail1" class="form-label">Firma Adı</label>
+                            <input type="text" class="form-control" name="companyName"  aria-describedby="emailHelp">
+                            
+                          </div>
+                        
+                          <div class="col-md-12">
+                            <label for="exampleInputPassword1" class="form-label">Yetkili Kişi</label>
+                            <input type="text" class="form-control" name="authorizedPerson" >
+                          </div>
+                        
+                          <div class="col-md-12">
+                            <label for="exampleInputPassword1" class="form-label">Adres</label>
+                            <textarea class="form-control" name="companyAdress"  rows="3"></textarea>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">VKN/TCKN</label>
+                            <input type="text" class="form-control" name="copanyTaxID" >
+                          </div>
+                          <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">E-posta</label>
+                            <input type="text" class="form-control" name="email" >
+                          </div>
+                          <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Telefon</label>
+                            <input type="text" class="form-control" name="companyTelephone" >
+                          </div>
+                          <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Şehir</label>
+                            <input type="text" class="form-control" name="companyCity" >
+                          </div>
+
+                          <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                          </div>
+                          
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+      </section>
+    </main>
+
+    <%- include('partials/_footer') %>
+   
+
+  </body>
+</html>
