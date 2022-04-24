@@ -28,7 +28,12 @@ exports.loginUser = async (req, res) => {
           if (same) {
             // USER SESSION
             req.session.userID = user._id;
-            res.status(200).redirect('/index');
+
+           res.status(200).render('index',{
+             user
+           });
+            
+          
             
           } else {
             req.flash("error", "Şifreniz kontrol ediniz!");
@@ -49,6 +54,7 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
+
 
 
 exports.logoutUser = (req, res) => {

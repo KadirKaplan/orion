@@ -1,142 +1,223 @@
-<header id="header" class="header fixed-top d-flex align-items-center">
+<div class="col-md-3 left_col">
+  <div class="left_col scroll-view">
+    <div class="navbar nav_title" style="border: 0;">
+      <a href="/index" class="site_title"> <span style="padding-left: 68px;">Orion</span></a>
+    </div>
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt=""> 
-        <span class="d-none d-lg-block">Orion</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-   
-    <div class="search-bar">
-      
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-      
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+    <div class="clearfix"></div>
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+    <!-- menu profile quick info -->
+    <div class="profile clearfix">
+      <div class="profile_pic">
+        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+      </div>
+      <div class="profile_info">
+        <span>Hoşgeldiniz!</span>
+        <h2><%=user.name%></h2>
+      </div>
+    </div>
+    <!-- /menu profile quick info -->
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
+    <br />
 
-      
-
-        
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"></span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6></h6>
-              <span></span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profilim</span>
-              </a>
-            </li>
+    <!-- sidebar menu -->
+    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+      <div class="menu_section">
+        <h3>Genel</h3>
+        <ul class="nav side-menu">
+          <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/index">Dashboard</a></li>
+              
+            </ul>
+          </li>
+          <li>
+            <a href="/customers"><i class="fa fa-user"></i> Müşteriler</a>
+          </li>
+          <li>
+            <a href="/products"><i class="fa fa-leaf"></i> Stoklar</a>
+          </li>
+          <li>
+            <a href="/tills"><i class="fa fa-money"></i> Kasalar</a>
+          </li>
+          <li>
+            <a href="/bankalar"><i class="fa fa-bank"></i> Bankalar</a>
+          </li>
+          <li><a><i class="fa fa-file"></i> Fatura İşlemleri <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="e_commerce.html">Satış Faturası</a></li>
+              <li><a href="projects.html">Mal Alım Faturası</a></li>
+              
+            </ul>
+          </li>
+          <li><a><i class="fa fa-edit"></i> Tanımlamalar<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/categories">Kategoriler</a></li>
+              <li><a href="/brands">Markalar</a></li>
+              <li><a href="/vatrates">KDV Oranları</a></li>
+              <li><a href="/unitset">Birim Setleri</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="/productss"><i class="fa fa-inbox"></i> Ambarlar</a>
+          </li>
           
-            <li>
-              <a href="/users/logout" class="dropdown-item d-flex align-items-center" >
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Çıkış</span>
-              </a>
-            </li>
+        </ul>
+      </div>
+      <div class="menu_section">
+        <h3>Live On</h3>
+        <ul class="nav side-menu">
+          <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="e_commerce.html">E-commerce</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="project_detail.html">Project Detail</a></li>
+              <li><a href="contacts.html">Contacts</a></li>
+              <li><a href="profile.html">Profile</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="page_403.html">403 Error</a></li>
+              <li><a href="page_404.html">404 Error</a></li>
+              <li><a href="page_500.html">500 Error</a></li>
+              <li><a href="plain_page.html">Plain Page</a></li>
+              <li><a href="login.html">Login Page</a></li>
+              <li><a href="pricing_tables.html">Pricing Tables</a></li>
+            </ul>
+          </li>
+          <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="#level1_1">Level One</a>
+                <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li class="sub_menu"><a href="level2.html">Level Two</a>
+                    </li>
+                    <li><a href="#level2_1">Level Two</a>
+                    </li>
+                    <li><a href="#level2_2">Level Two</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#level1_2">Level One</a>
+                </li>
+            </ul>
+          </li>                  
+          <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+        </ul>
+      </div>
 
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+    </div>
+    <!-- /sidebar menu -->
 
-      </ul>
-    </nav><!-- End Icons Navigation -->
+    <!-- /menu footer buttons -->
+    <div class="sidebar-footer hidden-small">
+      <a data-toggle="tooltip" data-placement="top" title="Settings">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Lock">
+        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+      </a>
+      <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+      </a>
+    </div>
+    <!-- /menu footer buttons -->
+  </div>
+</div>
 
-  </header><!-- End Header -->
+<!-- top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <div class="nav toggle">
+          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+        <nav class="nav navbar-nav">
+        <ul class=" navbar-right">
+          <li class="nav-item dropdown open" style="padding-left: 15px;">
+            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+              <img src="images/img.jpg" alt=""><%=user.name%>
+            </a>
+            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                <a class="dropdown-item"  href="javascript:;">
+                  <span class="badge bg-red pull-right">50%</span>
+                  <span>Settings</span>
+                </a>
+            <a class="dropdown-item"  href="javascript:;">Help</a>
+              <a class="dropdown-item"  href="/users/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+            </div>
+          </li>
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed " href="/index">
-          <i class="bi bi-grid" style="font-size: 20px; "></i>
-          <span>Dashboard</span>
-        </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/customers" >
-          <i class="bi bi-person" style="font-size: 20px;" ></i>
-          <span>Müşteriler</span>
-        </a>
-      </li>
-
-       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-faq.html">
-          <i class="bi bi-server" style="font-size: 20px;" ></i> 
-         
-          <span>Stoklar</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-boxes" style="font-size: 20px;"></i>
-          <span>Odalar</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
-          <i class="bi bi-coin" style="font-size: 20px;"></i>
-          <span>Kasalar</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-bank" style="font-size: 20px;"></i>
-          <span>Bankalar</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-receipt" style="font-size: 20px;"></i>
-          <span>Fatura</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-bar-chart" style="font-size: 20px;"></i>
-          <span>Raporlar</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-telephone" style="font-size: 20px;"></i>
-          <span>İletişim</span>
-        </a>
-      </li>
-
-      
-
-    </ul> 
-
-  </aside>
+          <li role="presentation" class="nav-item dropdown open">
+            <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-envelope-o"></i>
+              <span class="badge bg-green">6</span>
+            </a>
+            <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+              <li class="nav-item">
+                <a class="dropdown-item">
+                  <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item">
+                  <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item">
+                  <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item">
+                  <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <div class="text-center">
+                  <a class="dropdown-item">
+                    <strong>See All Alerts</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+<!-- /top navigation -->

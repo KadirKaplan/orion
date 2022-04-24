@@ -3,11 +3,16 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo');
 const session = require('express-session')
 const flash = require('connect-flash');
-const pageRoute = require('./route/pageRoute')
-const userRoute = require('./route/userRoute');
 const methodOverride = require('method-override');
 const customersRoute = require('./route/customersRoute');
-
+const pageRoute = require('./route/pageRoute')
+const userRoute = require('./route/userRoute');
+const productRoute = require('./route/productRoute');
+const unitsetRoute = require('./route/unitsetRoute');
+const categoryRoute = require('./route/categoryRoute');
+const brandRoute = require('./route/brandRoute');
+const vatrateRoute = require('./route/vatrateRoute');
+const tillRoute = require('./route/tillRoute');
 const app = express();
 
 //Connect Mongo
@@ -53,6 +58,12 @@ app.use('/', pageRoute);
 app.use('/users', userRoute);
 app.use('/index', pageRoute);
 app.use('/customers', customersRoute);
+app.use('/products', productRoute);
+app.use('/unitset', unitsetRoute);
+app.use('/categories', categoryRoute);
+app.use('/brands', brandRoute);
+app.use('/vatrates', vatrateRoute);
+app.use('/tills', tillRoute);
 
 
 const port = 3000;

@@ -1,4 +1,5 @@
 const Customer = require('../model/Customers');
+const User = require('../model/User');
 
 
 
@@ -37,9 +38,11 @@ exports.getAllCustomers = async (req, res) => {
     try {
 
         const customers = await Customer.find().sort('-companyCode');
+        const user = await User.findOne({_id:req.session.userID});
         res.status(200).render('customers', {
             status: 'succes',
-            customers
+            customers, 
+            user
         })
 
 
