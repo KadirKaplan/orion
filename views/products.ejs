@@ -7,7 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <link rel = "icon" href = 
+    "https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" 
+            type = "image/x-icon"> 
+    <title>Orion | Stoklar</title>
 
     <!-- Bootstrap -->
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -69,7 +72,7 @@
                   <div class="x_title">
                     <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-sm"
                     style="background-color: #1ABB9C;"
                     data-toggle="modal"
                     data-target="#addProduct"
@@ -127,11 +130,11 @@
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
-                                data-target="#examineCustomer<%=product[i]._id %>" href="#"></i>İncele</a>
+                                data-target="#examineProduct<%=product[i]._id %>" href="#"></i>İncele</a>
                                 <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
-                                data-target="#updateCustomer<%=product[i]._id %>" href="#"></i>Güncelle</a>
+                                data-target="#updateProduct<%=product[i]._id %>" href="#"></i>Güncelle</a>
                                 <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
-                                data-target="#deleteCustomer<%=product[i]._id %>" href="#"></i>Sil</a>
+                                data-target="#deleteProduct<%=product[i]._id %>" href="#"></i>Sil</a>
                             
                               </div>
                             </div>
@@ -140,57 +143,83 @@
                           </td>
                         </tr>
                         <!--Update Modal -->
-                      <div class="modal " id="updateCustomer<%=product[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal " id="updateProduct<%=product[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel"><strong><%=product[i].companyName %></strong></h5>
+                              <h5 class="modal-title" id="exampleModalLabel"><strong><%=product[i].productName %></strong></h5>
                               
                             </div>
                             <div class="modal-body">
                               <form method="POST" action="/product/<%= product[i].slug %>?_method=PUT">
                                 <div class="col-md-12">
-                                  <label for="exampleInputEmail1" class="form-label">Firma Kodu</label>
-                                  <input  type="text" class="form-control" name = "companyCode" value="<%=product[i].companyCode %>"  aria-describedby="emailHelp">
+                                  <label for="exampleInputEmail1" class="form-label">Stok Kodu</label>
+                                  <input  type="text" class="form-control" name = "productCode" value="<%=product[i].productCode %>" aria-describedby="emailHelp">
                                   
                                 </div>
                                 <div class="col-md-12">
-                                  <label for="exampleInputEmail1" class="form-label">Firma Adı</label>
-                                  <input type="text" class="form-control" name="companyName" value="<%=product[i].companyName %>"  aria-describedby="emailHelp">
+                                  <label for="exampleInputEmail1" class="form-label">Stok Adı</label>
+                                  <input type="text" class="form-control" name="productName" value="<%=product[i].productName %>" aria-describedby="emailHelp">
                                   
                                 </div>
                               
                                 <div class="col-md-12">
-                                  <label for="exampleInputPassword1" class="form-label">Yetkili Kişi</label>
-                                  <input type="text" class="form-control" name="authorizedPerson"  value ="<%=product[i].authorizedPerson %>">
+                                  <label for="exampleInputPassword1" class="form-label">Stok Açıklaması</label>
+                                  <input type="text" class="form-control" name="productDescription" value="<%=product[i].productDescription %>">
                                 </div>
                               
-                                <div class="col-md-12">
-                                  <label for="exampleInputPassword1" class="form-label">Adres</label>
-                                  <textarea class="form-control" name="companyAdress"   rows="3"><%=product[i].companyAdress %></textarea>
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">Birim</label>
+                                  <select  class="form-control" name="productUnitset" value ="<%=product[i].productName %>" >
+                                    <option value="">Seçiniz..</option>
+                                    <% for (let i=0; i< unitsets.length; i++) { %>
+                                    <option value="<%= unitsets[i]._id %>"><%= unitsets[i].unitName %></option>
+                                   <%  } %>
+                                  </select>
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="exampleInputPassword1" class="form-label">VKN/TCKN</label>
-                                  <input type="text" class="form-control" name="copanyTaxID"  value="<%=product[i].copanyTaxID %>">
+                                  <label for="exampleInputPassword1" class="form-label">Kategori</label>
+                                  <select  class="form-control" name="productCategory" >
+                                    <option value="">Seçiniz..</option>
+                                    <% for (let i=0; i< categories.length; i++) { %>
+                                    <option value="<%= categories[i]._id %>"><%= categories[i].categoryName %></option>
+                                   <%  } %>
+                                  </select>
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="exampleInputPassword1" class="form-label">E-posta</label>
-                                  <input type="text" class="form-control" name="email" value="<%=product[i].email %>">
+                                  <label for="exampleInputPassword1" class="form-label">Marka</label>
+                                  <select  class="form-control" name="productBrand">
+                                    <option value="">Seçiniz..</option>
+                                    <% for (let i=0; i< brands.length; i++) { %>
+                                      <option value="<%= brands[i]._id %>"><%= brands[i].brandName %></option>
+                                   <%  } %>
+                                  </select>
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="exampleInputPassword1" class="form-label">Telefon</label>
-                                  <input type="text" class="form-control" name="companyTelephone" value="<%=product[i].companyTelephone %>" >
+                                  <label for="exampleInputPassword1" class="form-label">Kdv Oranı</label>
+                                  <select  class="form-control" name="productVatrate" >
+                                    <option value="">Seçiniz..</option>
+                                    <% for (let i=0; i< vatrates.length; i++) { %>
+                                      <option value="<%= vatrates[i]._id %>"><%= vatrates[i].vatrate %></option>
+                                   <%  } %>
+                                  </select>
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="exampleInputPassword1" class="form-label">Şehir</label>
-                                  <input type="text" class="form-control" name="companyCity" value="<%=product[i].companyCity %>"> 
+                                  <label for="exampleInputPassword1" class="form-label">Alış Fiyatı</label>
+                                  <input type="text" class="form-control" name="productPurcPrice" value="<%=product[i].productPurcPrice %>" placeholder="₺" >
                                 </div>
-
+                                <div class="col-md-6">
+                                  <label for="exampleInputPassword1" class="form-label">Satış Fiyatı</label>
+                                  <input  type="text" class="form-control" name="productSalePrice" value="<%=product[i].productSalePrice %>" placeholder="₺">
+                                </div>
+                      
+                             
+                              
+                                
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
-                                  <button type="submit" class="btn btn-primary" style="background-color: #1ABB9C;">Kaydet</button>
+                                  <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary">Kaydet</button>
                                 </div>
-                                
                               </form>
                             </div>
                             
@@ -198,7 +227,7 @@
                         </div>
                       </div>
                         <!--Examine Modal -->
-                        <div class="modal " id="examineCustomer<%=product[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal " id="examineProduct<%=product[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -208,47 +237,53 @@
                               <div class="modal-body">
                                 <form >
                                   <div class="col-md-12">
-                                    <label for="exampleInputEmail1" class="form-label">Firma Kodu</label>
-                                    <input  type="text" class="form-control" name = "companyCode" value="<%=product[i].companyCode %>"  aria-describedby="emailHelp" readonly>
+                                    <label for="exampleInputEmail1" class="form-label">Stok Kodu</label>
+                                    <input  type="text" class="form-control" name = "productCode" value="<%=product[i].productCode %>" aria-describedby="emailHelp" readonly>
                                     
                                   </div>
                                   <div class="col-md-12">
-                                    <label for="exampleInputEmail1" class="form-label">Firma Adı</label>
-                                    <input type="text" class="form-control" name="companyName" value="<%=product[i].companyName %>"  aria-describedby="emailHelp" readonly>
+                                    <label for="exampleInputEmail1" class="form-label">Stok Adı</label>
+                                    <input type="text" class="form-control" name="productName" value="<%=product[i].productName %>" aria-describedby="emailHelp" readonly>
                                     
                                   </div>
                                 
                                   <div class="col-md-12">
-                                    <label for="exampleInputPassword1" class="form-label">Yetkili Kişi</label>
-                                    <input type="text" class="form-control" name="authorizedPerson"  value ="<%=product[i].authorizedPerson %>" readonly>
+                                    <label for="exampleInputPassword1" class="form-label">Stok Açıklaması</label>
+                                    <input type="text" class="form-control" name="productDescription" value="<%=product[i].productDescription %>" readonly>
                                   </div>
                                 
-                                  <div class="col-md-12">
-                                    <label for="exampleInputPassword1" class="form-label">Adres</label>
-                                    <textarea class="form-control" name="companyAdress" readonly  rows="3"><%=product[i].companyAdress %></textarea>
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">Birim</label>
+                                    <input type="text" class="form-control" name="productUnitset" value="<%=product[i].productUnitset.unitName %>" readonly>
                                   </div>
                                   <div class="col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label">VKN/TCKN</label>
-                                    <input type="text" class="form-control" name="copanyTaxID"  value="<%=product[i].copanyTaxID %>" readonly>
+                                    <label for="exampleInputPassword1" class="form-label">Kategori</label>
+                                    <input type="text" class="form-control" name="productCategory" value="<%=product[i].productCategory.categoryName %>" readonly>
                                   </div>
                                   <div class="col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label">E-posta</label>
-                                    <input type="text" class="form-control" name="email" value="<%=product[i].email %>" readonly>
+                                    <label for="exampleInputPassword1" class="form-label">Marka</label>
+                                    <input type="text" class="form-control" name="productBrand" value="<%=product[i].productBrand.brandName %>" readonly>
                                   </div>
                                   <div class="col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label">Telefon</label>
-                                    <input type="text" class="form-control" name="companyTelephone" value="<%=product[i].companyTelephone %>" readonly>
+                                    <label for="exampleInputPassword1" class="form-label">Kdv Oranı</label>
+                                    <input type="text" class="form-control" name="productDescription" value="<%=product[i].productVatrate.vatrate %>" readonly>
                                   </div>
                                   <div class="col-md-6">
-                                    <label for="exampleInputPassword1" class="form-label">Şehir</label>
-                                    <input type="text" class="form-control" name="companyCity" value="<%=product[i].companyCity %>" readonly> 
+                                    <label for="exampleInputPassword1" class="form-label">Alış Fiyatı</label>
+                                    <input type="text" class="form-control" name="productPurcPrice" value="<%=product[i].productPurcPrice %>" placeholder="₺" readonly>
                                   </div>
-  
+                                  <div class="col-md-6">
+                                    <label for="exampleInputPassword1" class="form-label">Satış Fiyatı</label>
+                                    <input  type="text" class="form-control" name="productSalePrice" value="<%=product[i].productSalePrice %>" placeholder="₺" readonly>
+                                  </div>
+                        
+                               
+                                
+                                  
                                   <div class="modal-footer">
                                     <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
-                                    <button type="submit" class="btn btn-primary" style="background-color: #1ABB9C;">Kaydet</button>
+                                    <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary">Kaydet</button>
                                   </div>
-                                  
                                 </form>
                               </div>
                               
@@ -256,7 +291,7 @@
                           </div>
                         </div>
                        <!--Detete item Modal -->
-                      <div class="modal" id="deleteCustomer<%=product[i]._id %>" tabindex="-1" role="dialog">
+                      <div class="modal" id="deleteProduct<%=product[i]._id %>" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -265,7 +300,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <p><strong><%=product[i].companyName %></strong> isimli firmayı silmek istediğinizden emin misiniz? </p>
+                              <p><strong><%=product[i].productName %></strong> isimli stoğu silmek istediğinizden emin misiniz? </p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
@@ -284,94 +319,97 @@
             </div>
          </div>
        </div>
+       
  </div>
+
 </div>
+
 </div>
-       <!-- Add Modal -->
-       <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"><strong>Stok Ekle</strong></h5>
-              
-            </div>
-            <div class="modal-body">
-              <form method="POST" action="/products">
-                <div class="col-md-12">
-                  <label for="exampleInputEmail1" class="form-label">Stok Kodu</label>
-                  <input  type="text" class="form-control" name = "productCode"  aria-describedby="emailHelp">
-                  
-                </div>
-                <div class="col-md-12">
-                  <label for="exampleInputEmail1" class="form-label">Stok Adı</label>
-                  <input type="text" class="form-control" name="productName"  aria-describedby="emailHelp">
-                  
-                </div>
-              
-                <div class="col-md-12">
-                  <label for="exampleInputPassword1" class="form-label">Stok Açıklaması</label>
-                  <input type="text" class="form-control" name="productDescription" >
-                </div>
-              
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Birim</label>
-                  <select  class="form-control" name="productUnitset" >
-                    <option value="">Seçiniz..</option>
-                    <% for (let i=0; i< unitsets.length; i++) { %>
-                    <option value="<%= unitsets[i]._id %>"><%= unitsets[i].unitName %></option>
-                   <%  } %>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Kategori</label>
-                  <select  class="form-control" name="productCategory" >
-                    <option value="">Seçiniz..</option>
-                    <% for (let i=0; i< categories.length; i++) { %>
-                    <option value="<%= categories[i]._id %>"><%= categories[i].categoryName %></option>
-                   <%  } %>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Marka</label>
-                  <select  class="form-control" name="productBrand">
-                    <option value="">Seçiniz..</option>
-                    <% for (let i=0; i< brands.length; i++) { %>
-                      <option value="<%= brands[i]._id %>"><%= brands[i].brandName %></option>
-                   <%  } %>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Kdv Oranı</label>
-                  <select  class="form-control" name="productVatrate" >
-                    <option value="">Seçiniz..</option>
-                    <% for (let i=0; i< vatrates.length; i++) { %>
-                      <option value="<%= vatrates[i]._id %>"><%= vatrates[i].vatrate %></option>
-                   <%  } %>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Alış Fiyatı</label>
-                  <input type="text" class="form-control" name="productPurcPrice" placeholder="₺" >
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1" class="form-label">Satış Fiyatı</label>
-                  <input  type="text" class="form-control" name="productSalePrice" placeholder="₺">
-                </div>
-      
-             
-              
-                
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
-                  <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary">Kaydet</button>
-                </div>
-                
-              </form>
-            </div>
+        <!-- Add Modal -->
+<div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Stok Ekle</strong></h5>
+        
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/products">
+          <div class="col-md-12">
+            <label for="exampleInputEmail1" class="form-label">Stok Kodu</label>
+            <input  type="text" class="form-control" name = "productCode"  aria-describedby="emailHelp">
             
           </div>
-        </div>
+          <div class="col-md-12">
+            <label for="exampleInputEmail1" class="form-label">Stok Adı</label>
+            <input type="text" class="form-control" name="productName"  aria-describedby="emailHelp">
+            
+          </div>
+        
+          <div class="col-md-12">
+            <label for="exampleInputPassword1" class="form-label">Stok Açıklaması</label>
+            <input type="text" class="form-control" name="productDescription" >
+          </div>
+        
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Birim</label>
+            <select  class="form-control" name="productUnitset" >
+              <option value="">Seçiniz..</option>
+              <% for (let i=0; i< unitsets.length; i++) { %>
+              <option value="<%= unitsets[i]._id %>"><%= unitsets[i].unitName %></option>
+             <%  } %>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Kategori</label>
+            <select  class="form-control" name="productCategory" >
+              <option value="">Seçiniz..</option>
+              <% for (let i=0; i< categories.length; i++) { %>
+              <option value="<%= categories[i]._id %>"><%= categories[i].categoryName %></option>
+             <%  } %>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Marka</label>
+            <select  class="form-control" name="productBrand">
+              <option value="">Seçiniz..</option>
+              <% for (let i=0; i< brands.length; i++) { %>
+                <option value="<%= brands[i]._id %>"><%= brands[i].brandName %></option>
+             <%  } %>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Kdv Oranı</label>
+            <select  class="form-control" name="productVatrate" >
+              <option value="">Seçiniz..</option>
+              <% for (let i=0; i< vatrates.length; i++) { %>
+                <option value="<%= vatrates[i]._id %>"><%= vatrates[i].vatrate %></option>
+             <%  } %>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Alış Fiyatı</label>
+            <input type="text" class="form-control" name="productPurcPrice" placeholder="₺" >
+          </div>
+          <div class="col-md-6">
+            <label for="exampleInputPassword1" class="form-label">Satış Fiyatı</label>
+            <input  type="text" class="form-control" name="productSalePrice" placeholder="₺">
+          </div>
+
+       
+        
+          
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+            <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary">Kaydet</button>
+          </div>
+          
+        </form>
       </div>
+      
+    </div>
+  </div>
+</div>
 
         <footer>
           <div class="pull-right">

@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel = "icon" href = 
+    "https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" 
+            type = "image/x-icon"> 
+    <title>Orion | Faturalar</title>
+
+    <!-- Bootstrap -->
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+
+    <style>
+
+      #scrollable {
+        height: 250px;
+
+        overflow: scroll;
+
+      }
+      
+
+    </style>
+
+
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+            <%-include('partials/_sidebar') %>
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Faturalar <small></small></h3>
+              </div>
+
+
+            </div>
+
+            <div class="clearfix"></div>
+            <% if(flashMessages) { %>
+
+              <% if(flashMessages.success) { %>
+                <div  class="alert alert-success">
+                  <%= flashMessages.success %>
+                </div>
+              <% %>
+
+              <% } if(flashMessages.error) { %>
+                <div class="alert alert-danger">
+                  <%= flashMessages.error %>
+                </div>
+              <% }%>
+
+
+            <% }%>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    style="background-color: #1ABB9C;"
+                    data-toggle="modal"
+                    data-target="#choiseType"
+                    data-placement="top"
+                    title="Yeni Fatura Oluştur"
+                  >
+                     Yeni Fatura
+                  </button>
+
+
+
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                      <div class="row">
+                          <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+
+                    <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                          <tr>
+                            <th>Fatura Numarası</th>
+                            <th>Fatura Türü</th>
+                            <th>Müşteri</th>
+                            <th>Tarih</th>
+                            <th>Tutar</th>
+                            <th>İşlemler</th>
+                          </tr>
+                      </thead>
+
+
+                      <tbody>
+                        <% for (let i = 0; i < invoices.length; i++) { %>
+                        <tr>
+                          <td><%= invoices[i].InvoiceNo %></td>
+                          <td><%= invoices[i].InvoiceType.InvoiceTypeName %></td>
+                          <td><%= invoices[i].InvoiceCustomer.companyName%></td>
+                          <td><%= invoices[i].InvoiceDate %></td>
+                          <td><%= invoices[i].InvoiceAmount %></td>
+                          <td>
+                            <div class="dropdown" >
+                              <button class="btn btn-default btn-sm dropdown-toggle" style="height: 20px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                              </button>
+
+                            </div>
+
+
+                          </td>
+                        </tr>
+
+
+                        <% } %>
+                      </tbody>
+                    </table>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+       </div>
+ </div>
+</div>
+</div>
+  <!-- Choise Invoice Type Modal -->
+  <div class="modal fade " id="choiseType"  data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> <strong>Fatura Türü Seçiniz</strong></h5>
+      
+        </div>
+        <div class="modal-body">
+          
+          <div class="row ">
+            <div class="col-md-12">
+              
+             
+              
+             
+               <button type="button"  id="perakende" value="62693d23eee9afa60d35d421"  data-toggle="modal" data-target="#addInvoice" data-placement="top" class="btn btn-primary btn-sm btn-block" style="background-color: #1ABB9C;" data-dismiss="modal" >Perakende Satış Faturası</button>
+               <button type="button"  id="toptan" value="62693d33eee9afa60d35d423"  data-toggle="modal" data-target="#addInvoice" data-placement="top" class="btn btn-primary btn-sm btn-block" style="background-color: #1ABB9C;" data-dismiss="modal" >Toptan Satış Faturası</button>  
+            </div>
+        </div>
+        </div>
+   
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal" aria-hidden="true">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+       <!-- Add Modal -->
+
+<div class="modal fade"  id="addInvoice" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Fatura Oluştur</strong></h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/invoices">
+          <div class="container">
+
+                  <div class="row">
+                    <input id="testNumber" value="getInvoiceNumber" hidden="true"  type="text" class="form-control" placeholder="Fatura Numarası" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                    <input  id="buttonControl" type="text" class="form-control" placeholder="Fatura Numarası" aria-label="Recipient's username" aria-describedby="basic-addon2" name="InvoiceType" >
+                    <input id="jsonproduct"   type="text" class="form-control"   aria-describedby="basic-addon2" name="InvoiceProduct[]" >
+                    <div class="col-md-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <input id="newNumber"   type="text" class="form-control" placeholder="Fatura Numarası" aria-label="Recipient's username" aria-describedby="basic-addon2" name="InvoiceNo" >
+                            <div class="input-group-append">
+                            <a  class="btn btn-outline-secondary" id="getNumber" data-toggle="tooltip" data-placement="top" title="Otomatik Getir"  type="button" >...</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="input-group input-group-sm mb-3">
+                            <select  class="selectpicker " data-size="5"   data-live-search="true" name="InvoiceCustomer" data-width="100%" >
+                            <option value="" >Müşteri Seçiniz</option>
+                            <% for (let i=0; i< customers.length; i++) { %>
+                            <option  value="<%= customers[i]._id %>"><%= customers[i].companyName %></option>
+                            <%  } %> 
+                          
+                            
+                            
+                            
+                            </select>
+                          </div>
+                        </div>
+                    
+
+                        <div class="col-md-12">
+                          <div class="input-group input-group-sm mb-3">
+                            
+                            <select id="year"  class="selectpicker"  data-size="5" data-live-search="true" data-width="100%">
+                              <option value="">Ürün Seçiniz.</option>
+                              <% for (let i=0; i< products.length; i++) { %>
+                                    
+                                 <option  value="<%= products[i]._id %>" > <%= products[i].productName %></option>
+                                 
+                                
+                                 
+                                 <%  } %>
+                            </select>
+                            
+                          </div>
+                          
+                        </div>
+                        
+                        
+                     
+                      </div>
+                  </div>
+
+                  <div class="row">
+
+                   <div class="input-group input-group-sm col-sm-1 ">
+                   
+                      <input type="text" class="form-control" placeholder="Kod" id="txtKod"  />
+                    </div> 
+
+                    <div class="input-group input-group-sm col-sm-2  ">
+                      <input type="text" class="form-control" placeholder="Adı" id="txtAd" />
+                    </div>
+                    <div class="input-group input-group-sm col-sm-1  ">
+                      <input type="text" class="form-control" placeholder="Birim"  id="txtBirim" />
+                    </div>
+
+                    <div class="input-group input-group-sm col-sm-1  ">
+                      <input type="number" class="form-control" placeholder="Miktar" id="txtMiktar" />
+                    </div>
+                    <div class="input-group input-group-sm col-sm-2  ">
+                      <input type="number" class="form-control" placeholder="Birim Fiyat" id="txtBirimFiyat" />
+                    </div>
+                    <div class="input-group input-group-sm col-sm-2  ">
+                      <input type="number" class="form-control" placeholder="KDV" id="txtKdv" />
+                    </div>
+                    <div class="input-group input-group-sm col-sm-2  ">
+                      <input type="number" class="form-control" placeholder="Tutar" id="txtTutar" />
+                    </div>
+
+                    
+
+
+
+
+
+                    <div class="input-group input-group-sm col-sm-1  ">
+                      <input type="button" id="btnAdd" class="btn btn-secondary para  " value="+" />
+                    </div>
+
+                  </div>
+
+                  <div class="row" id="scrollable">
+                     <table id="tblData" class="table table-striped table-bordered table-sm" cellspacing="0"width="100%">
+                        <thead>
+                                <tr>
+                                  <th class="th-sm">No</th>
+                                  <th class="th-sm">Kodu</th>
+                                  <th class="th-sm">Adi</th>
+                                  <th class="th-sm">Birim</th>
+                                  <th class="th-sm">Miktar</th>
+                                  <th class="th-sm">Birim Fiyat</th>
+                                  <th class="th-sm">Kdv</th>
+                                  <th class="th-sm">Tutar</th>
+                                  <th class="th-sm">İslem</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                  </div>
+                  &nbsp;
+                  <div class="row ">
+                    
+                          <div class="input-group input-group-sm col-md-1">
+                        
+                            <input type="text" class="form-control"  readonly placeholder="Tutar"> 
+                            
+                            
+                          </div>
+                          <div class="input-group input-group-sm col-md-2">
+                        
+                            <input type="text" class="form-control" id="deepTutar" readonly>
+                            <div class="input-group-append">
+                              <span class="input-group-text ">₺</span>
+                            
+                            </div>
+                          </div>
+                  </div>
+                  <div class="row ">
+                    
+                    <div class="input-group input-group-sm col-md-1">
+                  
+                      <input type="text" class="form-control"  readonly placeholder="Kdv"> 
+                      
+                      
+                    </div>
+                    <div class="input-group input-group-sm col-md-2">
+                  
+                      <input type="text" class="form-control" id="deepKdv" readonly>
+                      <div class="input-group-append">
+                        <span class="input-group-text ">₺</span>
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    
+                    <div class="input-group input-group-sm col-md-1">
+                  
+                      <input type="text" class="form-control"  readonly placeholder="Toplam"> 
+                      
+                      
+                    </div>
+                    <div class="input-group input-group-sm col-md-2">
+                  
+                      <input type="text" class="form-control" id="deepToplam" readonly>
+                      <div class="input-group-append">
+                        <span class="input-group-text ">₺</span>
+                      
+                      </div>
+                    </div>
+                  </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                      
+                      <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary ">Kaydet</button>
+                    </div>
+
+                    
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <footer>
+          <div class="pull-right">
+            Orion - Designed by <a href="https://github.com/KadirKaplan">Kadir KAPLAN</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+<script>
+
+        $("#getNumber").click(function() {
+ 
+        
+          $.ajax({
+                type: 'GET',
+                
+                url: '/getInvoiceNumber',
+
+                dataType: 'json',
+                
+                success: function (data) {
+                  
+                var value = data.InvoiceNo;
+                i=0;
+                var newValue = value.split('-');
+                var increase  = newValue[1];
+                increase++;
+                value = "FTR-"+increase;
+                
+                  $("#newNumber").val(value);
+                  
+                },
+                error: function (data) {
+                    console.log("Error. asdasdasdasdsad", data);
+                }
+                
+            });
+            
+
+})
+
+
+  
+</script>
+    
+    <script>
+      $("button").click(function(e){
+    var idClicked = e.target.value;
+  
+$('#buttonControl').val(idClicked);
+
+       $('#year').on('change', function() {
+              
+              var a = $(this).val();
+            
+              
+              $.ajax({
+                type: 'GET',
+                url: '/products/'+ a,
+               
+                dataType: 'json',
+                success: function (data) {
+                
+                 
+     
+                  
+                   $("#txtKod").val(data.productCode);
+                   $("#txtAd").val(data.productName);
+                   $("#txtBirim").val(data.productUnitset.unitName);
+                   $("#txtBirimFiyat").val(data.productSalePrice);
+                   $("#txtKdv").val(data.productVatrate.vatrate);
+
+                   $("#txtBirimFiyat,#txtMiktar,#txtKdv").keyup(function () {
+                     if(idClicked == "62693d33eee9afa60d35d423" ) 
+                     {
+             
+                      
+                      var fiyat = $('#txtBirimFiyat').val();
+                      var Fiyat = parseFloat(fiyat);
+                      var miktar = $('#txtMiktar').val();
+                      var kdv = $('#txtKdv').val()/100;
+                      var Total = miktar*((Fiyat*kdv)+Fiyat);
+                      var subTotalFormatted= parseFloat(Total).toFixed(2);
+                      $('#txtTutar').val(subTotalFormatted);
+                    }
+                    
+                   
+                    if(idClicked == "62693d23eee9afa60d35d421" ) 
+                     {
+                      var fiyat = $('#txtBirimFiyat').val();
+                      var Fiyat = parseFloat(fiyat);
+                      var miktar = $('#txtMiktar').val();
+                      var kdv = $('#txtKdv').val()/100;
+                      var Total =$("#txtBirimFiyat").val()*$('#txtMiktar').val();
+                      var subTotalFormatted= parseFloat(Total).toFixed(2);
+                      $('#txtTutar').val(subTotalFormatted);
+                     
+                     } 
+                    
+                    });
+                    
+                   
+                   
+                 
+                  
+                  
+                },
+                error: function (data) {
+                    console.log("Error. asdasdasdasdsad", data);
+                }
+                
+            });
+            
+          });
+
+
+          
+ });
+
+    </script>
+
+
+     <script>
+        var emptyRow = "<tr><td colspan='9' class='text-center'></td></tr>";
+
+        $(document).ready(function () {
+
+            $("#tblData tbody").append(emptyRow); // adding empty row on page load
+
+            $("#btnAdd").click(function () {
+                var Kodu = $("#txtKod").val().trim();
+                var Adi = $("#txtAd").val().trim();
+                var Birim = $("#txtBirim").val().trim();
+                var Miktar = $("#txtMiktar").val().trim();
+                var BirimFiyat = $("#txtBirimFiyat").val().trim();
+                var Kdv = $("#txtKdv").val().trim();
+                var Tutar = $("#txtTutar").val().trim();
+               var a =  $('#buttonControl').val();
+              
+
+                if (Kodu !=" " && Adi != "" && Birim !=" " && Miktar != "" && BirimFiyat !=" " && Kdv != "" && Tutar != ""  ) { // validation
+                   
+                    if ($("#tblData tbody").children().children().length == 1) {
+                        $("#tblData tbody").html("");
+                    }
+                    var srNo = $("#tblData tbody").children().length + 1;
+                    // creating dynamic html string
+                    var dynamicTr = "<tr><td>"+srNo+"</td><td>" + Kodu + "</td><td>" + Adi + "</td><td>" + Birim + "</td><td>" + Miktar + "</td><td>" + BirimFiyat + "</td><td>" + Kdv + "</td><td>" + Tutar  + "</td><td>  <button class='btn btn-danger  btn-sm'> <i class='fa fa-trash'></i>  </button> </td></tr>";
+                
+                    $("#tblData tbody").append(dynamicTr); // appending dynamic string to table tbody
+                    $("#txtCode").val("");
+                    $("#txtName").val("");
+                    $("#txtBirim").val("");
+                    $("#txtMiktar").val("");
+                    $("#txtBirimFiyat").val("");
+                    $("#txtKdv").val("");
+                    $("#txtTutar").val("");
+                    if(a=="62693d23eee9afa60d35d421") {
+                      sumVal = 0;
+                      sumKdv = 0;
+                      var totalTutar, totalKdv;
+                      for (var i =1; i< tblData.rows.length;i++)
+                      {
+                        
+                        sumVal = sumVal +  parseFloat( tblData.rows[i].cells[7].innerHTML);
+                        sumKdv = sumKdv + parseFloat(tblData.rows[i].cells[6].innerHTML);
+
+                        totalTutar = parseFloat(sumVal).toFixed(2);
+                        totalKdv = parseInt(sumKdv);
+
+
+                        var pq = parseFloat(totalTutar-(totalTutar*(totalKdv/100))).toFixed(2);
+                        var qp = parseFloat(totalTutar*totalKdv/100).toFixed(2);
+                        $("#deepTutar").val(pq);
+                        $("#deepKdv").val(qp);
+                        var result  = parseFloat(pq)+ parseFloat(qp);
+                        
+                        $("#deepToplam").val(parseFloat(result).toFixed(2));
+                      }
+
+
+                    }
+                    if(a=="62693d33eee9afa60d35d423")
+                    {
+                      sumVal = 0;
+                      sumKdv = 0;
+                      TotaL = 0;
+                      var totalTutar, totalKdv;
+                      for (var i =1; i< tblData.rows.length;i++)
+                      {
+                        
+                        sumVal = sumVal +  parseFloat( (tblData.rows[i].cells[5].innerHTML)*(tblData.rows[i].cells[4].innerHTML));
+                        sumKdv = sumKdv + parseFloat((tblData.rows[i].cells[6].innerHTML)*(tblData.rows[i].cells[5].innerHTML)*(tblData.rows[i].cells[4].innerHTML));
+                        TotaL = TotaL + parseFloat(tblData.rows[i].cells[7].innerHTML)
+                        totalTutar = parseFloat(sumVal).toFixed(2);
+                        totalKdv = parseFloat(sumKdv/100);
+                        
+                        $("#deepTutar").val(totalTutar);
+                        $("#deepToplam").val(parseFloat(TotaL).toFixed(2));
+                        var pq  = parseFloat(totalTutar*totalKdv).toFixed(2);
+                        $("#deepKdv").val(parseFloat(totalKdv).toFixed(2));
+                        
+
+                        
+                      }
+                    }
+                  
+                   
+                     
+             var InvoiceProduct = [];
+                 for(var i =1; i<tblData.rows.length;i++)
+                 {
+                  InvoiceProduct.push(tblData.rows[i].cells[1].innerHTML);
+                  //  var arr = jQuery.parseJSON(array);
+                  //  console.log(arr);
+                   $("#jsonproduct").val(InvoiceProduct);
+                   console.log(InvoiceProduct);
+
+                 }
+      
+                
+
+                    $(".btn-sm").click(function () { // registering function for delete button
+
+                        $(this).parent().parent().remove();
+                        $('#jsonproduct[type="text"]').val("");
+                      
+                        if ($("#tblData tbody").children().children().length == 0) {
+
+                            $("#tblData tbody").append(emptyRow);
+                        }
+                    });
+                  } else {
+                    alert("Değer Eksik");
+                  }
+
+             
+                  
+            });
+         
+        });
+
+      
+    </script>
+
+ 
+
+    <script>
+      $(document).ready(function() 
+      {
+        $('tr').each(function()
+        {
+          var totmarks = 0;
+          $(this).find('td').each(function()
+          {
+              var marks  = $(this).text();
+              if(marks.length!==0)
+              {
+                totmarks+=parseFloat(marks);
+              }
+          });
+          $(this).find('#totmarks').html("="+totmarks);
+        });
+      });
+    </script>
+
+ 
+  </body>
+</html>

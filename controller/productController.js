@@ -21,7 +21,7 @@ exports.createProduct = async (req, res) => {
 
 
 exports.getAllProducts = async (req, res) => {
-    const product = await Product.find().populate('productBrand').populate('productUnitset').populate('productCategory');
+    const product = await Product.find().populate('productBrand').populate('productUnitset').populate('productCategory').populate('productVatrate');
     const user = await User.findOne({ _id: req.session.userID });
     const unitsets = await Unitset.find();
     const categories = await Category.find();
@@ -36,4 +36,17 @@ exports.getAllProducts = async (req, res) => {
         vatrates
      
     })
+}
+
+exports.getProduct = async (req,res) => {
+    try {
+     
+  const data = await Product.findOne({_id: req.params._id}).populate('productVatrate').populate('productUnitset');
+  
+res.json(data);
+  
+    } catch(error) {
+     console.log(error);
+     
+    }
 }

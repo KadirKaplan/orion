@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>DataTables | Gentelella</title>
+    <link rel = "icon" href = 
+    "https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" 
+            type = "image/x-icon">
+    <title>Orion | Müşteriler</title>
 
     <!-- Bootstrap -->
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -69,7 +71,7 @@
                   <div class="x_title">
                     <button
                     type="button"
-                    class="btn btn-primary"
+                    class="btn btn-primary btn-sm"
                     style="background-color: #1ABB9C;"
                     data-toggle="modal"
                     data-target="#addCourse"
@@ -104,6 +106,9 @@
                             <th>Email</th>
                             <th>Telefon</th>
                             <th>Şehir</th>
+                            <th>Borç</th>
+                            <th>Alacak</th>
+                            <th>Bakiye</th>
                             <th>İşlemler</th>
                           </tr>
                       </thead>
@@ -117,7 +122,10 @@
                           <td><%= customers[i].authorizedPerson %></td>
                           <td><%= customers[i].email %></td>
                           <td><%= customers[i].companyTelephone %></td>
-                          <td><%= customers[i].companyCity %>0</td>
+                          <td><%= customers[i].companyCity %></td>
+                          <td><%= customers[i].companyDebit %></td>
+                          <td><%= customers[i].companyCredit %></td>
+                          <td><%= customers[i].companyBalance %></td>
                           <td>
                             <div class="dropdown" >
                               <button class="btn btn-default btn-sm dropdown-toggle" style="height: 20px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

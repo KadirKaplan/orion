@@ -31,6 +31,16 @@ const CustomerSchema = new Schema({
     companyCity: {
         type: String
     },
+    companyDebit : {
+        type: Number,
+
+    },
+    companyCredit : {
+        type:Number
+    },
+    companyBalance : {
+        type: Number
+    },
     slug: {
         type: String,
         unique: true
@@ -44,6 +54,11 @@ CustomerSchema.pre('validate', function (next) {
     })
     next();
 })
-const Customers  = mongoose.model('Customer', CustomerSchema);
+
+CustomerSchema.pre('validate', function (next) {
+    this.companyBalance = (this.companyDebit)-(this.companyCredit);
+    next();
+})
+const Customers  = mongoose.model('customer', CustomerSchema);
 
 module.exports = Customers;

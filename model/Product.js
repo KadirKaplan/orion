@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+require('mongoose-money');
+const Money = require('moneyjs');
 
 const Schema = mongoose.Schema;
 
@@ -40,7 +41,7 @@ const ProductSchema = new Schema({
         type: Number
     },
     productAmount: {
-        type: Number,
+        type: Number
 
     }
     

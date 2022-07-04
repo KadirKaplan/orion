@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel = "icon" href = 
+    "https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg" 
+            type = "image/x-icon"> 
+    <title>Orion | Ambarlar</title>
+
+    <!-- Bootstrap -->
+    <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+            <%-include('partials/_sidebar') %> 
+        
+        <div class="right_col" role="main">
+         
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Ambarlar <small></small></h3>
+              </div>
+              
+             
+            </div>
+
+            <div class="clearfix"></div>
+            <% if(flashMessages) { %> 
+
+              <% if(flashMessages.success) { %> 
+                <div  class="alert alert-success">
+                  <%= flashMessages.success %>
+                </div>
+              <% %> 
+          
+              <% } if(flashMessages.error) { %> 
+                <div class="alert alert-danger">
+                  <%= flashMessages.error %>  
+                </div>
+              <% }%> 
+              
+              
+            <% }%>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <button type="button"class="btn btn-primary btn-sm"style="background-color: #1ABB9C;"data-toggle="modal" data-target="#addWarehouse"data-placement="top" title="Yeni Ambar Oluştur">
+                    <i class="bi bi-person-plus me-1"></i> Yeni Ambar
+                  </button>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="py-5">
+                      <div class="container">
+                        <div class="row hidden-md-up">
+                          <% for(let i =0; i< warehouses.length; i++) { %> 
+                              <div class="col-md-4">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <h1  style ="text-align: center;"class="card-title"><%=warehouses[i].houseRoomNumber %></h1> 
+                                  </div>
+                                  <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                      <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                      </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">25%</div>
+                                      </div>
+                                    </li>
+                                  
+                                  </ul>
+                                  <div class="card-body">
+                                    <div class="dropdown">
+                                      <button class="btn btn-sm dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown"  aria-expanded="false">
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
+                                        data-target="#examineWarehouse<%=warehouses[i]._id %>" href="#"></i>İncele</a>
+                                        <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
+                                        data-target="#updateWarehouse<%=warehouses[i]._id %>" href="#"></i>Güncelle</a>
+                                        <a  class="dropdown-item" data-toggle="modal" data-placement="bottom" title="İncele" 
+                                        data-target="#deleteWarehouse<%=warehouses[i]._id %>" href="#"></i>Sil</a>
+                                      </div>
+                                    </div>
+                                  
+                                  </div>
+                                </div><br>
+                              </div>
+                              <!--Update Modal -->
+                      <div class="modal " id="updateWarehouse<%=warehouses[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel"><strong><%=warehouses[i].houseRoomNumber %></strong></h5>
+                              
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST" action="/warehouses/<%= warehouses[i]._id %>?_method=PUT">
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">  Kodu</label>
+                                  <input  type="text" class="form-control" name = "houseCode" value="<%=warehouses[i].houseCode %>"  aria-describedby="emailHelp">
+                                  
+                                </div>
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Ambar Numarası</label>
+                                  <input type="text" class="form-control" name="houseRoomNumber" value="<%=warehouses[i].houseRoomNumber %>"  aria-describedby="emailHelp">
+                                  
+                                </div>
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Kapasite</label>
+                                  <input type="number" class="form-control" name="houseCapacity" value="<%=warehouses[i].houseCapacity %>"  aria-describedby="emailHelp">
+                                  
+                                </div>
+                              
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                                  <button type="submit" class="btn btn-primary" style="background-color: #1ABB9C;">Kaydet</button>
+                                </div>
+                                
+                              </form>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <!--Examine Modal -->
+                      <div class="modal " id="examineWarehouse<%=warehouses[i]._id %>"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel"> <strong><%=warehouses[i].houseRoomNumber %></strong></h5>
+                          
+                            </div>
+                            <div class="modal-body">
+                              <form >
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label"> Kodu</label>
+                                  <input  type="text" class="form-control" name = "houseCode" value="<%=warehouses[i].houseCode %>"  aria-describedby="emailHelp" readonly>
+                                  
+                                </div>
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Ambar Numarası</label>
+                                  <input type="text" class="form-control" name="houseRoomNumber" value="<%=warehouses[i].houseRoomNumber %>"  aria-describedby="emailHelp" readonly>
+                                </div>
+                                <div class="col-md-12">
+                                  <label for="exampleInputEmail1" class="form-label">Kapasite</label>
+                                  <input type="text" class="form-control" name="houseCapacity" value="<%=warehouses[i].houseCapacity %>"  aria-describedby="emailHelp" readonly>
+                                  
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                                  <button type="submit" class="btn btn-primary" style="background-color: #1ABB9C;">Kaydet</button>
+                                </div>
+                                
+                              </form>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                     <!--Detete item Modal -->
+                    <div class="modal" id="deleteWarehouse<%=warehouses[i]._id %>" tabindex="-1" role="dialog">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Uyarı</h5>
+                            
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <p><strong><%=warehouses[i].houseRoomNumber %></strong> numaralı ambarı silmek istediğinizden emin misiniz? </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                           <a href ="/warehouses/<%= warehouses[i]._id %>?_method=DELETE" type="button" class="btn btn-primary" style="background-color: #1ABB9C;">Onayla</a>
+                           
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                        
+                          <% } %> 
+                        </div>
+                        
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+       </div>
+ </div>
+</div>
+</div>
+       <!-- Add Warehouse -->
+       <div class="modal fade" id="addWarehouse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><strong>Ambar Ekle</strong></h5>
+              
+            </div>
+            <div class="modal-body">
+              <form method="POST" action="/warehouses">
+                <div class="col-md-12">
+                  <label for="exampleInputEmail1" class="form-label"> Kodu</label>
+                  <input  type="text" class="form-control" name = "houseCode"  aria-describedby="emailHelp">
+                  
+                </div>
+                <div class="col-md-12">
+                  <label for="exampleInputEmail1" class="form-label">Ambar Numarası</label>
+                  <input type="text" class="form-control" name="houseRoomNumber"  aria-describedby="emailHelp">
+                  
+                </div>
+                <div class="col-md-12">
+                  <label for="exampleInputEmail1" class="form-label">Ambar Kapasitesi (Kasa miktarı)</label>
+                  <input type="text" class="form-control" name="houseCapacity"  aria-describedby="emailHelp">
+                  
+                </div>
+              
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true">Kapat</button>
+                  <button type="submit"  style="background-color: #1ABB9C;" class="btn btn-primary">Kaydet</button>
+                </div>
+                
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+        <footer>
+          <div class="pull-right">
+            Orion - Designed by <a href="https://github.com/KadirKaplan">Kadir KAPLAN</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    
+    
+  </body>
+</html>

@@ -13,6 +13,12 @@ const categoryRoute = require('./route/categoryRoute');
 const brandRoute = require('./route/brandRoute');
 const vatrateRoute = require('./route/vatrateRoute');
 const tillRoute = require('./route/tillRoute');
+const bankRoute = require('./route/bankRoute');
+const bankaccountRoute = require('./route/bankAccountRoute');
+const warehouseRoute = require('./route/warehouseRoute');
+const invoiceTypeRoute = require('./route/invoiceTypeRoute');
+const invoiceRoute = require('./route/invoiceRoute');
+const getInvoiceNumberRoute = require('./route/getinvoicenumberRoute');
 const app = express();
 
 //Connect Mongo
@@ -27,6 +33,7 @@ app.set('view engine', 'ejs');
 global.userIN = null;
 
 //Middlewares
+
 app.use(express.static("public"));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true }))
@@ -49,6 +56,7 @@ app.use(methodOverride('_method', {
 
 
 //Routes
+
 app.use('*', (req, res, next) => {
     userIN = req.session.userID;
     next();
@@ -64,10 +72,15 @@ app.use('/categories', categoryRoute);
 app.use('/brands', brandRoute);
 app.use('/vatrates', vatrateRoute);
 app.use('/tills', tillRoute);
+app.use('/banks', bankRoute);
+app.use('/bankaccounts', bankaccountRoute);
+app.use('/warehouses', warehouseRoute);
+app.use('/invoicetypes', invoiceTypeRoute);
+app.use('/invoices', invoiceRoute);
+app.use('/getInvoiceNumber', getInvoiceNumberRoute);
 
-
-const port = 3000;
-app.listen(port, () => {
-    console.log(`app start ${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`app start ${PORT}`);
 });
 // express-session

@@ -22,7 +22,10 @@ exports.createCustomer = async (req, res) => {
                 email: req.body.email,
                 companyAdress: req.body.companyAdress,
                 companyTelephone: req.body.companyTelephone,
-                companyCity: req.body.companyCity
+                companyCity: req.body.companyCity,
+                companyDebit:req.body.companyDebit,
+                companyCredit:req.body.companyCredit,
+            
             });
 
             req.flash("success", `${customer.companyName}  başarılı bir şekilde oluşturuldu!`);
